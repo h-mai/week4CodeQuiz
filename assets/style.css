@@ -1,0 +1,58 @@
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 100px;
+    font-size: x-large;
+    font-weight: bold;
+}
+      
+p {
+
+    text-align: center;
+    font-size: large; 
+}
+
+#quizDiv {
+
+    height: 200px;
+    position: relative;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+#timer {
+
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    
+}
+
+#highscores {
+
+    position: fixed;
+    top: 20px;
+    left: 50px
+}
+
+li {
+    list-style: none;
+    background-color: #eb9d37;
+    margin: 25px;
+    width: auto;
+    padding: 20px;
+    font-weight: bold;
+    font-size:medium;
+    cursor: pointer;
+}
