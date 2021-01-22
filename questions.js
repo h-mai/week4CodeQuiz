@@ -66,6 +66,8 @@ function startTimer() {
     displayQuestions(qIndex);
 }
 
+//questions display function 
+
 function displayQuestions(qIndex) {
 
     startScreenDiv.innerHTML = "";
@@ -92,6 +94,7 @@ function displayQuestions(qIndex) {
 
 }
 
+//comparing answers 
 function answerCheck(event) {
 
     var element = event.target;
@@ -110,7 +113,7 @@ function answerCheck(event) {
 
     if (qIndex >= questions.length) {
         finishQuiz();
-        ansDisplay.textContent = "End of quiz!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
+        ansDisplay.textContent = "End of quiz!" + " " + "You got  " + score + "/" + questions.length + "Correct!";
     } else {
         nextQuestion(qIndex);
     }
@@ -124,4 +127,24 @@ function answerCheck(event) {
 
     }
 
+} 
+    
+function finishQuiz() {
+
+    startScreenDiv.innerHTML = "";
+
+    //all done message 
+    var finishPrompt = document.createElement("h1");
+    finishPrompt.setAttribute("id", "finishPrompt");
+    finishPrompt.textContent = "Finished Quiz!";
+
+    var viewScore = document.createElement("p");
+    viewScore.setAttribute("id", "viewScore");
+    viewScore.textContent = "You got "
 }
+
+// finishQuiz will prompt an 'ALL DONE' message with the final score 
+//a link to the highscores html will be prompted sending user to hs html page
+// user then can enter their initials, view scores and clear etc. 
+ 
+
