@@ -138,9 +138,6 @@ function finishQuiz() {
     finishPrompt.setAttribute("id", "finishPrompt");
     finishPrompt.textContent = "Finished Quiz!";
 
-    var viewScore = document.createElement("p");
-    viewScore.setAttribute("id", "viewScore");
-    viewScore.textContent = "You got "
 }
 
 // finishQuiz will prompt an 'ALL DONE' message with the final score 
