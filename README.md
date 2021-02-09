@@ -1,3 +1,3 @@
 # week4CodeQuiz
-![Code Quiz](.assets/CodeQuizChallenge.gif)
+![Code Quiz](../week4CodeQuiz/assets/CodeQuizChallenge.gif)
 
