@@ -31,36 +31,42 @@ var questions = [
 
 //document elements/ids 
 var timerDiv = document.getElementById("timer");
+var scoreDiv = document.getElementById("score");
 var startScreenDiv = document.getElementById("quizDiv");
 var startTimeBtn = document.getElementById("startTime");
-var answersList = document.createElement("ul");
-var ansDisplay = document.getElementById("answersDiv")
+var answersList = document.getElementById("answersList");
+var ansDisplay = document.getElementById("answersDiv");
+var quesDisplay = document.getElementById("questions");
+var intro = document.getElementById("intro");
+
 
 //names of answers 
-var quizChoices;
 var qIndex = 0;
-
 //timer
 var timeRemaining = 91;
+var timer;
 //penalty points
 var penalty = 10;
 //score
 var score = 0;
 
 //set timer and questions display
-
 startTimeBtn.addEventListener("click", startTimer);
 
 function startTimer() {
+    intro.style.display = "none";
 
-    var countdown = setInterval(function () {
+    timer = setInterval(function () {
         timeRemaining--;
-        timer.textContent = "Time Left: " + timeRemaining;
+        timerDiv.textContent = "Time Left: " + timeRemaining;
+
 
         if (timeRemaining === 0) {
-            clearInterval(countdown);
-            timer.textContent = "Time's Up!";
+            clearInterval(timer);
+            timerDiv.textContent = "Time's Up!";
+
         }
+
     }, 1000);
 
     displayQuestions(qIndex);
@@ -70,27 +76,43 @@ function startTimer() {
 
 function displayQuestions(qIndex) {
 
-    startScreenDiv.innerHTML = "";
     answersList.innerHTML = "";
+    quesDisplay.innerHTML = "";
 
-    for (var i = 0; i < questions.length; i++) {
+    var choices = questions[qIndex].choices;
+    var quizTitle = questions[qIndex].title;
+    quesDisplay.textContent = quizTitle;
 
-        var quizChoices = questions[qIndex].choices;
-        var quizTitle = questions[qIndex].title;
-        startScreenDiv.textContent = quizTitle;
-    }
 
-    quizChoices.forEach(function (newItem) {
+    choices.forEach(function (newItem) {
 
         var choiceList = document.createElement("li");
         choiceList.setAttribute("id", "button");
 
         choiceList.textContent = newItem;
-        startScreenDiv.appendChild(answersList);
+        //startScreenDiv.appendChild(answersList);
         answersList.appendChild(choiceList);
         choiceList.addEventListener("click", (answerCheck));
 
     })
+
+}
+// next question 
+function nextQuestion() {
+    qIndex++
+    displayQuestions(qIndex);
+}
+// stopping quiz and pausing timer - prompting results for user
+function stopQuiz() {
+
+    startScreenDiv.textContent = "All Done! You got " + score + " out of 5";
+
+    if (timeRemaining >= 0) {
+        var finalTime = timeRemaining;
+        clearInterval(timer);
+        timerDiv.textContent = "Your final score is: " + finalTime;
+    }
+
 
 }
 
@@ -98,11 +120,11 @@ function displayQuestions(qIndex) {
 function answerCheck(event) {
 
     var element = event.target;
-    var ansDisplay = document.createElement("answersDiv");
 
     if (element.textContent === questions[qIndex].answer) {
         score++;
-        score.textContent = "Score" + score;
+        scoreDiv.textContent = "Score: " + score + " out of 5";
+
         ansDisplay.textContent = "Correct! The answer is" + " " + questions[qIndex].answer;
 
     } else {
@@ -111,37 +133,16 @@ function answerCheck(event) {
 
     }
 
-    if (qIndex >= questions.length) {
-        finishQuiz();
-        ansDisplay.textContent = "End of quiz!" + " " + "You got  " + score + "/" + questions.length + "Correct!";
+    if (qIndex === questions.length - 1) {
+        stopQuiz();
+        submitScore();
+
     } else {
         nextQuestion(qIndex);
-    }
-
-    answersList.appendChild(ansDisplay);
-
-    function nextQuestion() {
-
-        qIndex++;
-        displayQuestions(qIndex);
 
     }
+};
 
-} 
-    
-function finishQuiz() {
 
-    startScreenDiv.innerHTML = "";
 
-    //all done message 
-    var finishPrompt = document.createElement("h1");
-    finishPrompt.setAttribute("id", "finishPrompt");
-    finishPrompt.textContent = "Finished Quiz!";
-
-}
-
-// finishQuiz will prompt an 'ALL DONE' message with the final score 
-//a link to the highscores html will be prompted sending user to hs html page
-// user then can enter their initials, view scores and clear etc. 
- 
 
