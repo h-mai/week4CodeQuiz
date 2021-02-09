@@ -6,7 +6,7 @@ This application demonstrates DOM manipulation through Javascript and also local
 
 Deployment Links:
 
-Deployed github IO: https://h-mai.github.io/week4CodeQuiz/
+Deployed github IO: https://h-mai.github.io/week4CodeQuiz/index.html
 GitHub Repository: https://github.com/h-mai/week4CodeQuiz.git
 
 User Story: 
